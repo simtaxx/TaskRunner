@@ -1,5 +1,8 @@
 import React,{useEffect,useState,useRef} from 'react';
 import {Button, TextInput, SafeAreaView,ScrollView,View,Text ,Image , StyleSheet,TouchableOpacity  } from 'react-native';
+
+import { MaterialIcons } from '@expo/vector-icons';
+
 const styles = StyleSheet.create({
 	wrapper:{
 		width:'100%',
@@ -50,7 +53,7 @@ const styles = StyleSheet.create({
 		position:'absolute',
 		width:33,
 		height:33,
-		backgroundColor:'rgba(155,200,0,1)',
+		// backgroundColor:'rgba(155,200,0,1)',
 		top:16,
 		left:16,
 	},
@@ -115,7 +118,7 @@ export default function Post() {
 		// `current` fait référence au champ textuel monté dans le DOM
 		// alert(inputText);
 		var newElement = {
-			id:  datasComments.length,
+			id:  (datasComments[0].id + datasComments.length+1),
 			name: 'inconnu',
 			body: inputText
 		}
@@ -134,15 +137,23 @@ export default function Post() {
 					<View style={styles.separator}/>
 					{datasComments.length ? datasComments.map((comment)=>
 						<View key = {comment.id} style={styles.comment__wrapper} >
-							<Text style={styles.comment__ico}>ICO HERE</Text>
+							{/* <Text style={styles.comment__ico}>ICO HERE</Text> */}
+							<MaterialIcons
+								style={styles.comment__ico}
+								name="account-circle"
+								size={33}
+								color="#005492"
+							/>	
 							<Text style={styles.comment__name}>{comment.name}</Text>
 							<Text style={styles.comment__content}>{comment.body}</Text>
+												
 						</View>
 						)
 							
 						
 						: <Text>ERROR</Text>
 					}
+					{/* <Text>{JSON.stringify(datasComments)}</Text> */}
 					<View style={styles.comment__wrapper__add} >
 						<TextInput ref={inputEl} style={styles.input} value={inputText} onChangeText={onChangeText}/>
 						<Button
