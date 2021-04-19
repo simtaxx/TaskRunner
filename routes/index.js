@@ -15,7 +15,20 @@ const Stack = createStackNavigator();
 export default function Routes() {
 	return (
 		<NavigationContainer>
-			<Stack.Navigator initialRouteName="Post">
+			<Stack.Navigator
+				initialRouteName="Users"
+				screenOptions={{
+					headerStyle: {
+						backgroundColor: '#005492',
+					},
+					headerTintColor: '#fff',
+					headerTitleStyle: {
+						fontSize: 24,
+						fontWeight: 'lighter',
+					},
+					title: 'Task Runner',
+				}}
+			>
 				<Stack.Screen name="Album" component={Album} />
 				<Stack.Screen name="Post" component={Post} />
 				<Stack.Screen name="Users" component={Users} />
