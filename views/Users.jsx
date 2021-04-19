@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, ScrollView } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 
 const styles = StyleSheet.create({
@@ -10,6 +10,8 @@ const styles = StyleSheet.create({
 
 // Components
 import UserItem from '../components/UserItem';
+import Map from '../components/Map';
+import H1 from '../ui/H1';
 
 export default function Users({ navigation }) {
 	const [usersList, setUsersList] = useState([]);
@@ -47,7 +49,7 @@ export default function Users({ navigation }) {
   }
 
 	return (
-		<View>
+		<ScrollView style={{flex: 1}}>
 			<SearchBar
 				containerStyle={SearchBarContainerStyle}
 				inputStyle={{backgroundColor: '#F9F9F9'}}
@@ -62,6 +64,8 @@ export default function Users({ navigation }) {
 				renderItem={({item}) => (<UserItem item={item} navigation={navigation} />)}
 				keyExtractor={ item => item.id.toString() }
 			/>
-		</View>
+			<H1>Map</H1>
+			<Map markers={displayedUsers.map(user => user.address)}/>
+		</ScrollView>
 	);
 }
