@@ -1,6 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Dimensions, ScrollView, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons'; 
+import React, { useState, useEffect } from 'react'
+import {
+  Text,
+  View,
+  StyleSheet,
+  Dimensions,
+  ScrollView,
+  FlatList,
+  TouchableOpacity,
+  SafeAreaView
+} from 'react-native'
+import { MaterialIcons } from '@expo/vector-icons'
 import Task from '../components/Task'
 import TaskInput from '../components/TaskInput'
 import Info from '../components/Info'
@@ -8,7 +17,7 @@ import H1 from '../ui/H1'
 import Map from '../components/Map'
 
 export default function User({ route, navigation }) {
-  const { user } = route.params;
+  const { user } = route.params
 
   const [todos, setTodos] = useState([])
   const [albums, setAlbums] = useState([])
@@ -17,22 +26,26 @@ export default function User({ route, navigation }) {
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/todos?userId=${user.id}`)
       .then(response => response.json())
-      .then((data) => {
+      .then(data => {
         setTodos(data.reverse())
       })
     fetch(`https://jsonplaceholder.typicode.com/albums?userId=${user.id}`)
       .then(response => response.json())
-      .then((data) => {
+      .then(data => {
         setAlbums(data)
       })
     fetch(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`)
       .then(response => response.json())
-      .then((data) => {
+      .then(data => {
         setPosts(data)
       })
   }, [])
 
-  const addTodo = (value) => setTodos([{ id: todos[0].id + 1, title: value, completed: false }, ...todos ])
+  const addTodo = value =>
+    setTodos([
+      { id: todos[0].id + 1, title: value, completed: false },
+      ...todos
+    ])
 
   return (
     <ScrollView style={styles.container}>
@@ -51,35 +64,41 @@ export default function User({ route, navigation }) {
         <Info label="Suite" value={user.address.suite} />
         <Info label="City" value={user.address.city} />
         <Info label="ZIP Code" value={user.address.zipcode} />
-        <Map markers={[user.address]}/>
+        <Map markers={[user.address]} />
       </View>
       <View>
         <H1>Todo's</H1>
-        <TaskInput addTodo={addTodo}/>
+        <TaskInput addTodo={addTodo} />
         <FlatList
           style={styles.todoList}
           data={todos}
-          renderItem={({item}) => <Task name={item.title} icon="add-circle" checked={item.completed}/>}
-          keyExtractor={(item) => String(item.id)}
+          renderItem={({ item }) => (
+            <Task
+              name={item.title}
+              icon="add-circle"
+              checked={item.completed}
+            />
+          )}
+          keyExtractor={item => String(item.id)}
         />
       </View>
       <View>
         <H1>Albums</H1>
-        <SafeAreaView style={{flex: 1}}>
+        <SafeAreaView style={{ flex: 1 }}>
           <FlatList
-            contentContainerStyle={{flexGrow: 1}}
+            contentContainerStyle={{ flexGrow: 1 }}
             numColumns={3}
-            columnWrapperStyle={{margin: 5}}
+            columnWrapperStyle={{ margin: 5 }}
             data={albums}
-            renderItem={({item}) => {
+            renderItem={({ item }) => {
               return (
-                <TouchableOpacity 
+                <TouchableOpacity
                   style={styles.album}
                   onPress={() => navigation.navigate('Album', { album: item })}
                 >
-                  <Text 
-                    style={styles.albumTitle} 
-                    ellipsizeMode='tail'
+                  <Text
+                    style={styles.albumTitle}
+                    ellipsizeMode="tail"
                     numberOfLines={1}
                   >
                     {item.title}
@@ -87,67 +106,73 @@ export default function User({ route, navigation }) {
                 </TouchableOpacity>
               )
             }}
-            keyExtractor={(item) => String(item.id)}
+            keyExtractor={item => String(item.id)}
           />
         </SafeAreaView>
       </View>
       <View>
         <H1>Articles</H1>
-        <SafeAreaView style={{flex: 1}}>
+        <SafeAreaView style={{ flex: 1 }}>
           <FlatList
             data={posts}
-            renderItem={({item}) => {
+            renderItem={({ item }) => {
               return (
-                <TouchableOpacity 
+                <TouchableOpacity
                   style={styles.article}
-                  onPress={() => navigation.navigate('Post', { post: { ...item, author: user.name } })}
+                  onPress={() =>
+                    navigation.navigate('Post', {
+                      post: { ...item, author: user.name }
+                    })
+                  }
                 >
-                  <Text 
+                  <Text
                     style={styles.articleTitle}
-                    ellipsizeMode='tail'
+                    ellipsizeMode="tail"
                     numberOfLines={1}
                   >
                     {item.title}
                   </Text>
-                  <MaterialIcons name="keyboard-arrow-right" size={24} color="black" />
+                  <MaterialIcons
+                    name="keyboard-arrow-right"
+                    size={24}
+                    color="black"
+                  />
                 </TouchableOpacity>
               )
             }}
-            keyExtractor={(item) => String(item.id)}
+            keyExtractor={item => String(item.id)}
           />
         </SafeAreaView>
       </View>
     </ScrollView>
-  );
+  )
 }
-
-
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingHorizontal: 10,
+    paddingHorizontal: 10
   },
   albumContainer: {
     flexGrow: 1,
-    justifyContent: "space-between",
-    minHeight: 100,
+    justifyContent: 'space-between',
+    minHeight: 100
   },
   album: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    width: "30%",
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '30%',
     height: 100,
     marginHorizontal: 5,
-    backgroundColor: "blue",
+    backgroundColor: 'blue',
     borderRadius: 10
   },
   albumTitle: {
-    color: "white",
+    color: 'white',
     fontWeight: 'bold',
-    padding: 10,
+    padding: 10
   },
   article: {
     flex: 1,
@@ -164,6 +189,6 @@ const styles = StyleSheet.create({
   },
   articleTitle: {
     fontSize: 16,
-    width: "90%"
+    width: '90%'
   }
-});
+})

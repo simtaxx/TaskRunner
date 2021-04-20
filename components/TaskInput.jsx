@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Text, View, TextInput, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React, { useState } from 'react'
+import { Text, View, TextInput, StyleSheet } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
 
-export default function TaskInput({addTodo}){
+export default function TaskInput({ addTodo }) {
   const [value, setValue] = useState('')
 
   const onPress = () => {
@@ -20,9 +20,9 @@ export default function TaskInput({addTodo}){
         value={value}
         onSubmitEditing={onPress}
       />
-      <Ionicons 
+      <Ionicons
         style={styles.taskInputIcon}
-        name="add-circle" 
+        name="add-circle"
         size={32}
         color="#0084E3"
         onPress={onPress}
@@ -35,15 +35,15 @@ const styles = StyleSheet.create({
   taskInput: {
     paddingVertical: 10,
     marginBottom: 10,
-    borderBottomColor: "rgba(0,0,0,0.1)",
+    borderBottomColor: 'rgba(0,0,0,0.1)',
     borderBottomWidth: StyleSheet.hairlineWidth
   },
   taskInputValue: {
-    fontSize: 18,
+    fontSize: 18
   },
   taskInputIcon: {
-    position: "absolute",
+    position: 'absolute',
     right: 0,
-    top: "50%",
-  },
+    top: '50%'
+  }
 })

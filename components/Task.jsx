@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import React, { useState } from 'react'
+import { Text, View, StyleSheet, TouchableWithoutFeedback } from 'react-native'
+import { AntDesign } from '@expo/vector-icons'
 
-export default function Task({name, checked}){
+export default function Task({ name, checked }) {
   const [active, setActive] = useState(checked)
 
   return (
     <TouchableWithoutFeedback onPress={() => setActive(!active)}>
-      <View style={[styles.task, active && {opacity: 0.5}]}>
-        <Text 
+      <View style={[styles.task, active && { opacity: 0.5 }]}>
+        <Text
           style={[
             styles.taskName,
-            active && {textDecorationLine: "line-through"}
+            active && { textDecorationLine: 'line-through' }
           ]}
-          ellipsizeMode='tail'
+          ellipsizeMode="tail"
           numberOfLines={1}
         >
           {name}
         </Text>
         <AntDesign
-          name={active ? "checkcircleo" : "checkcircle"}
+          name={active ? 'checkcircleo' : 'checkcircle'}
           size={24}
           color="#fff"
         />
@@ -34,13 +34,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: "#0084E3",
+    backgroundColor: '#0084E3',
     padding: 16,
     borderRadius: 10,
-    marginBottom: 10,
+    marginBottom: 10
   },
   taskName: {
-    color: "#fff",
-    maxWidth: "90%"
-  },
+    color: '#fff',
+    maxWidth: '90%'
+  }
 })
