@@ -15,8 +15,10 @@ import TaskInput from '../components/TaskInput'
 import Info from '../components/Info'
 import H1 from '../ui/H1'
 import Map from '../components/Map'
+import { useFonts, Roboto_500Medium } from '@expo-google-fonts/roboto';
 
 export default function User({ route, navigation }) {
+  useFonts({Roboto_500Medium});
   const { user } = route.params
 
   const [todos, setTodos] = useState([])
@@ -172,7 +174,8 @@ const styles = StyleSheet.create({
   albumTitle: {
     color: 'white',
     fontWeight: 'bold',
-    padding: 10
+    padding: 10,
+    fontFamily: 'Roboto_500Medium'
   },
   article: {
     flex: 1,
@@ -189,6 +192,7 @@ const styles = StyleSheet.create({
   },
   articleTitle: {
     fontSize: 16,
-    width: '90%'
+    width: '90%',
+    fontFamily: 'Roboto_500Medium'
   }
 })

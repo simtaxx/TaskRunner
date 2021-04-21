@@ -24,7 +24,6 @@ export default function Routes() {
           headerTintColor: '#fff',
           headerTitleStyle: {
             fontSize: 24,
-            fontWeight: 'lighter'
           },
           title: 'Task Runner'
         }}

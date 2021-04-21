@@ -4,7 +4,7 @@ import { SearchBar } from 'react-native-elements'
 
 const styles = StyleSheet.create({
   container: {
-    padding: 24
+    padding: 24,
   }
 })
 

@@ -2,36 +2,38 @@ import React from 'react'
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 import { Entypo } from '@expo/vector-icons'
-
-const styles = StyleSheet.create({
-  userItem: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    height: 65,
-    borderColor: 'rgba(0, 0, 0, .1)',
-    borderRadius: 4,
-    borderWidth: 1,
-    marginBottom: 16,
-    padding: 16
-  },
-  userInfo: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between'
-  },
-  picture: {
-    marginRight: 8
-  },
-  text: {
-    textTransform: 'uppercase'
-  },
-  arrow: {}
-})
+import { useFonts, Roboto_300Light } from '@expo-google-fonts/roboto';
 
 export default function userItem({ item, navigation }) {
+  useFonts({Roboto_300Light});
+  const styles = StyleSheet.create({
+    userItem: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      height: 65,
+      borderColor: 'rgba(0, 0, 0, .1)',
+      borderRadius: 4,
+      borderWidth: 1,
+      marginBottom: 16,
+      padding: 16
+    },
+    userInfo: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    },
+    picture: {
+      marginRight: 8
+    },
+    text: {
+      textTransform: 'uppercase',
+      fontFamily: 'Roboto_300Light',
+    },
+    arrow: {}
+  })
   return (
     <TouchableOpacity
       style={styles.userItem}
