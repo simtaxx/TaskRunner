@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     width: 328,
     height: 328,
     borderRadius: 8,
-    textAlign: 'center',
+    // textAlign: 'center',
     marginBottom: 32
   },
   modal: {
@@ -48,6 +48,8 @@ const styles = StyleSheet.create({
 })
 
 export default function Album({ route }) {
+  console.log(route);
+  const { album } = route.params;
   const [datas, setDatas] = useState([])
   const [loading, setLoading] = useState(null)
 
@@ -58,7 +60,7 @@ export default function Album({ route }) {
   const photoEl = useRef(null)
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/photos?albumId=1')
+    fetch(`https://jsonplaceholder.cypress.io/photos?albumId=${album.id}`)
       .then(response => response.json())
       .then(json => {
         setDatas(json)
@@ -85,7 +87,8 @@ export default function Album({ route }) {
 					<Text>---------------------------------------</Text> */}
 
             <Text style={styles.title}>
-              Album {datas.length ? datas[0].id : ''}
+              {/* Album {datas.length ? datas[0].id : ''} */}
+              Album {album.id} - {album.title}
             </Text>
 
             {datas.length ? (

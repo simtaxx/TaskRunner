@@ -26,17 +26,17 @@ export default function User({ route, navigation }) {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/todos?userId=${user.id}`)
+    fetch(`https://jsonplaceholder.cypress.io/todos?userId=${user.id}`)
       .then(response => response.json())
       .then(data => {
         setTodos(data.reverse())
       })
-    fetch(`https://jsonplaceholder.typicode.com/albums?userId=${user.id}`)
+    fetch(`https://jsonplaceholder.cypress.io/albums?userId=${user.id}`)
       .then(response => response.json())
       .then(data => {
         setAlbums(data)
       })
-    fetch(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`)
+    fetch(`https://jsonplaceholder.cypress.io/posts?userId=${user.id}`)
       .then(response => response.json())
       .then(data => {
         setPosts(data)

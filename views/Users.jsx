@@ -29,7 +29,7 @@ export default function Users({ navigation }) {
   }
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
+    fetch('https://jsonplaceholder.cypress.io/users')
       .then(response => response.json())
       .then(data => {
         setUsersList(data)

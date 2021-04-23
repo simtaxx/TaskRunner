@@ -13,7 +13,8 @@ import {
 import { MaterialIcons } from '@expo/vector-icons'
 
 export default function Post({ route }) {
-  const { post } = route.params
+  const  {post}  = route.params;
+  console.log(route);
   const [datasComments, setDatasComments] = useState([])
   const [loadingComments, setLoadingComments] = useState(null)
   const [urlPhotos, setUrlPhotos] = useState([])
@@ -21,7 +22,7 @@ export default function Post({ route }) {
   const inputEl = useRef(null)
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts/2/comments')
+    fetch('https://jsonplaceholder.cypress.io/posts/2/comments')
       .then(response => response.json())
       .then(json => {
         setDatasComments(json)
